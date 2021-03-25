@@ -3,9 +3,10 @@ import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import CheckoutProduct from './CheckoutProduct';
 import { useStateValue } from './StateProvider';
+import { auth } from './firebase';
 
 function Checkout() {
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket, user}, dispatch] = useStateValue();
     return (
         <div className="checkout">
             <div className="checkout_left">
@@ -16,6 +17,7 @@ function Checkout() {
                 />
 
                 <div>
+                    <h3>Hello, {user ? user?.email : "Guest"}</h3>
                     <h2 className="checkout_title">Your Shopping Carts</h2>
                    
                    {basket.map(item => (
